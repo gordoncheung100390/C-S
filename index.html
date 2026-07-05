@@ -171,11 +171,11 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── ASYMMETRIC VIDEO SECTION (STEINWAY STYLE) ───── */
+  /* ── ASYMMETRIC VIDEO SECTION ────────────────────── */
   .video-section {
     background: #FFFFFF;
     color: #0C0B09;
-    padding: 160px 52px;
+    padding: 140px 52px 80px 52px;
   }
 
   .video-grid {
@@ -210,18 +210,17 @@
 
   .video-subtitle {
     font-size: 16px;
-    color: #666666; /* Elegant muted tone matching image_37b501.jpg */
+    color: #666666;
     margin-bottom: 36px;
     line-height: 1.65;
     font-weight: 400;
   }
 
-  /* Pill Button Framework mirroring image_37b501.jpg */
   .btn-pill {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: #F3F1EC; /* Premium warm ultra-light gray pill background */
+    background: #F3F1EC;
     color: #0C0B09;
     text-decoration: none;
     padding: 16px 32px;
@@ -229,11 +228,10 @@
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.03em;
-    transition: background 0.25s, transform 0.15s;
+    transition: background 0.25s;
   }
-  .btn-pill:hover {
-    background: #EAE6DE;
-  }
+  .btn-pill:hover { background: #EAE6DE; }
+  
   .btn-pill svg {
     width: 16px;
     height: 16px;
@@ -251,8 +249,8 @@
   .video-player-wrapper {
     position: relative;
     width: 100%;
-    max-width: 380px; /* Constrained perfectly on desktop to balance vertical format */
-    border-radius: 16px; /* Rounded canvas geometry matching image_37b501.jpg */
+    max-width: 380px;
+    border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 30px 65px rgba(0, 0, 0, 0.08);
     background: #000000;
@@ -262,6 +260,80 @@
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  /* ── OWNER / LEADERSHIP SECTION ─────────────────── */
+  .owner-section {
+    background: #FFFFFF;
+    color: #0C0B09;
+    padding: 80px 52px 160px 52px;
+  }
+
+  .owner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .owner-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 4.5vw, 64px);
+    line-height: 1.12;
+    color: #0C0B09;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .owner-section-subtitle {
+    font-size: 16px;
+    color: #666666;
+    max-width: 650px;
+    margin-bottom: 60px;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  .owner-card {
+    width: 100%;
+    max-width: 380px;
+    text-align: left;
+  }
+
+  .owner-image-wrapper {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #F3F1EC;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.05);
+  }
+
+  .owner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%); /* Option 1: Forces the raw color image asset into beautiful grayscale */
+    transition: filter 0.4s ease;
+  }
+
+  .owner-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0C0B09;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .owner-title-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   /* ── FOOTER ──────────────────────────────────────── */
@@ -309,13 +381,18 @@
     }
     .btn-primary { font-size: 16px; padding: 22px 56px; font-weight: 700; }
 
-    /* Asymmetric Component Responsive Shift */
-    .video-section { padding: 110px 44px; }
+    .video-section { padding: 110px 44px 60px 44px; }
     .video-grid { flex-direction: column; gap: 54px; text-align: center; }
     .video-text-side { text-align: center; max-width: 100%; }
     .video-subtitle { font-size: 20px; max-width: 640px; margin: 0 auto 40px auto; }
     .video-player-side { justify-content: center; }
     .video-player-wrapper { max-width: 440px; }
+
+    .owner-section { padding: 60px 44px 120px 44px; }
+    .owner-section-subtitle { font-size: 20px; max-width: 100%; margin-bottom: 50px; }
+    .owner-card { max-width: 440px; margin: 0 auto; text-align: center; }
+    .owner-name { font-size: 24px; margin-bottom: 6px; }
+    .owner-title-tag { font-size: 15px; }
 
     footer { padding: 44px; }
     .footer-logo { height: 60px; }
@@ -343,12 +420,16 @@
     .hero-sub { font-size: 21px; font-weight: 400; color: #F0EAE0; line-height: 1.6; margin-bottom: 44px; }
     .btn-primary { padding: 22px 44px; font-size: 15px; font-weight: 700; width: 100%; text-align: center; letter-spacing: 0.18em; }
 
-    /* Video Component Mobile Fluid Configuration */
-    .video-section { padding: 90px 28px; }
+    .video-section { padding: 90px 28px 45px 28px; }
     .video-title { font-size: clamp(40px, 10vw, 56px); margin-bottom: 20px; }
     .video-subtitle { font-size: 18px; margin-bottom: 44px; }
     .btn-pill { width: 100%; justify-content: center; padding: 20px; font-size: 15px; font-weight: 700; }
     .video-player-wrapper { max-width: 100%; }
+
+    .owner-section { padding: 45px 28px 100px 28px; }
+    .owner-section-title { font-size: clamp(40px, 10vw, 56px); }
+    .owner-section-subtitle { font-size: 18px; margin-bottom: 44px; }
+    .owner-card { max-width: 100%; }
 
     footer { padding: 44px 28px; gap: 20px; }
     .footer-logo { height: 56px; }
@@ -364,6 +445,9 @@
 
     .video-title { font-size: 36px; }
     .video-subtitle { font-size: 16px; }
+    
+    .owner-section-title { font-size: 36px; }
+    .owner-section-subtitle { font-size: 16px; }
   }
 </style>
 </head>
@@ -402,7 +486,6 @@
       <h2 class="video-title">We redefine <em>quality.</em></h2>
       <p class="video-subtitle">Experience meticulous attention to detail through our customized residential and corporate cleanup workflows.</p>
       <a href="mailto:csqualitycleaningservices@gmail.com" class="btn-pill">
-        <!-- Minimal Document/Consultation SVG Icon matching Steinway layout style -->
         <svg viewBox="0 0 24 24">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
           <polyline points="14 2 14 8 20 8"></polyline>
@@ -423,6 +506,22 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- OWNER / LEADERSHIP SECTION -->
+<div class="owner-section">
+  <div class="owner-container">
+    <h2 class="owner-section-title">Leadership &amp; Vision</h2>
+    <p class="owner-section-subtitle">Bringing scientific precision and structural engineering excellence to elite property care. We treat environmental curation as an exact discipline.</p>
+    
+    <div class="owner-card">
+      <div class="owner-image-wrapper">
+        <img src="image_55538c.png" alt="Chin H.C." class="owner-img">
+      </div>
+      <h3 class="owner-name">Chin H.C. (MSc/BEng)</h3>
+      <p class="owner-title-tag">Founder &amp; Managing Director</p>
+    </div>
   </div>
 </div>
 

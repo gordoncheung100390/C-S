@@ -8,7 +8,6 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
- 
   :root {
     --gold:       #C9A95A;
     --gold-light: #E2C97A;
@@ -84,7 +83,6 @@
     animation: heroZoom 14s ease forwards;
   }
 
-  /* Heavy overlay — fully buries the original image text */
   .hero-overlay {
     position: absolute;
     inset: 0;
@@ -173,6 +171,51 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── REDEFINE QUALITY VIDEO SECTION ───────────────── */
+  .video-section {
+    background: #FFFFFF;
+    color: #0C0B09;
+    padding: 140px 52px;
+    text-align: center;
+  }
+
+  .video-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 68px);
+    line-height: 1.1;
+    color: #0C0B09;
+    margin-bottom: 20px;
+  }
+
+  .video-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .video-subtitle {
+    font-size: 16px;
+    color: #555555;
+    max-width: 580px;
+    margin: 0 auto 60px auto;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .video-player-wrapper {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.16);
+    background: #000000;
+  }
+
+  .video-player-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
   /* ── FOOTER ──────────────────────────────────────── */
   footer {
     background: #080705;
@@ -200,7 +243,7 @@
     nav.scrolled { padding: 18px 44px; }
 
     .nav-logo { 
-      height: 180px; /* Massive jump to give the stacked identity premium room */
+      height: 180px; 
     } 
 
     .nav-contact {
@@ -210,7 +253,7 @@
 
     .hero {
       align-items: center;
-      padding-top: 250px; /* Enhanced headroom clearance to accommodate huge logo layout */
+      padding-top: 250px; 
       padding-bottom: 100px;
     }
 
@@ -226,11 +269,11 @@
     }
 
     .hero-headline {
-      font-size: clamp(54px, 7.5vw, 84px); /* Headline text sizes scaled up significantly */
+      font-size: clamp(54px, 7.5vw, 84px); 
     }
 
     .hero-sub {
-      font-size: 24px; /* Crisp, highly readable description layout */
+      font-size: 24px; 
       font-weight: 400;
       color: #F0EAE0;
       max-width: 600px;
@@ -242,6 +285,9 @@
       padding: 22px 56px;
       font-weight: 700;
     }
+
+    .video-section { padding: 100px 44px; }
+    .video-subtitle { font-size: 20px; max-width: 520px; margin-bottom: 50px; }
 
     footer {
       padding: 44px;
@@ -261,7 +307,7 @@
     }
 
     .nav-logo { 
-      height: 150px; /* Significantly amplified to match headline prominence */
+      height: 150px; 
     } 
 
     .nav-contact {
@@ -304,7 +350,7 @@
     }
 
     .hero-sub {
-      font-size: 21px; /* Substantial readability update */
+      font-size: 21px; 
       font-weight: 400; 
       color: #F0EAE0; 
       line-height: 1.6;
@@ -319,6 +365,11 @@
       text-align: center;
       letter-spacing: 0.18em;
     }
+
+    .video-section { padding: 90px 28px; }
+    .video-title { font-size: clamp(40px, 10vw, 56px); }
+    .video-subtitle { font-size: 18px; margin-bottom: 40px; }
+    .video-player-wrapper { max-width: 100%; }
 
     footer {
       padding: 44px 28px;
@@ -340,6 +391,9 @@
     .hero-sub {
       font-size: 19px;
     }
+
+    .video-title { font-size: 36px; }
+    .video-subtitle { font-size: 16px; }
   }
 </style>
 </head>
@@ -367,6 +421,19 @@
     <div class="hero-cta">
       <a href="mailto:csqualitycleaningservices@gmail.com" class="btn-primary">Request a Consultation</a>
     </div>
+  </div>
+</div>
+
+<!-- REDEFINE QUALITY VIDEO SECTION -->
+<div class="video-section">
+  <h2 class="video-title">We redefine <em>quality.</em></h2>
+  <p class="video-subtitle">Experience meticulous attention to detail through our customized residential and corporate cleanup workflows.</p>
+  
+  <div class="video-player-wrapper">
+    <video controls playsinline preload="metadata">
+      <source src="quality-redefined.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 </div>
 

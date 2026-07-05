@@ -171,21 +171,36 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── REDEFINE QUALITY VIDEO SECTION ───────────────── */
+  /* ── ASYMMETRIC VIDEO SECTION (STEINWAY STYLE) ───── */
   .video-section {
     background: #FFFFFF;
     color: #0C0B09;
-    padding: 140px 52px;
-    text-align: center;
+    padding: 160px 52px;
+  }
+
+  .video-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+  }
+
+  .video-text-side {
+    flex: 1;
+    text-align: left;
+    max-width: 500px;
   }
 
   .video-title {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: clamp(38px, 5vw, 68px);
-    line-height: 1.1;
+    font-size: clamp(38px, 4.5vw, 64px);
+    line-height: 1.12;
     color: #0C0B09;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
   }
 
   .video-title em {
@@ -195,18 +210,51 @@
 
   .video-subtitle {
     font-size: 16px;
-    color: #555555;
-    max-width: 580px;
-    margin: 0 auto 60px auto;
-    line-height: 1.7;
+    color: #666666; /* Elegant muted tone matching image_37b501.jpg */
+    margin-bottom: 36px;
+    line-height: 1.65;
     font-weight: 400;
+  }
+
+  /* Pill Button Framework mirroring image_37b501.jpg */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #F3F1EC; /* Premium warm ultra-light gray pill background */
+    color: #0C0B09;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: background 0.25s, transform 0.15s;
+  }
+  .btn-pill:hover {
+    background: #EAE6DE;
+  }
+  .btn-pill svg {
+    width: 16px;
+    height: 16px;
+    stroke: #0C0B09;
+    stroke-width: 1.75;
+    fill: none;
+  }
+
+  .video-player-side {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .video-player-wrapper {
     position: relative;
-    max-width: 420px;
-    margin: 0 auto;
-    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.16);
+    width: 100%;
+    max-width: 380px; /* Constrained perfectly on desktop to balance vertical format */
+    border-radius: 16px; /* Rounded canvas geometry matching image_37b501.jpg */
+    overflow: hidden;
+    box-shadow: 0 30px 65px rgba(0, 0, 0, 0.08);
     background: #000000;
   }
 
@@ -241,88 +289,46 @@
   @media (max-width: 1024px) {
     nav { padding: 28px 44px; }
     nav.scrolled { padding: 18px 44px; }
-
-    .nav-logo { 
-      height: 180px; 
-    } 
-
-    .nav-contact {
-      font-size: 18px;
-      font-weight: 500;
-    }
+    .nav-logo { height: 180px; } 
+    .nav-contact { font-size: 18px; font-weight: 500; }
 
     .hero {
       align-items: center;
-      padding-top: 250px; 
+      padding-top: 250px;
       padding-bottom: 100px;
     }
-
-    .hero-content {
-      padding: 0 44px;
-      max-width: 740px;
-    }
-
-    .hero-eyebrow {
-      font-size: 18px; 
-      font-weight: 500;
-      letter-spacing: 0.24em;
-    }
-
-    .hero-headline {
-      font-size: clamp(54px, 7.5vw, 84px); 
-    }
-
+    .hero-content { padding: 0 44px; max-width: 740px; }
+    .hero-eyebrow { font-size: 18px; font-weight: 500; letter-spacing: 0.24em; }
+    .hero-headline { font-size: clamp(54px, 7.5vw, 84px); }
     .hero-sub {
-      font-size: 24px; 
+      font-size: 24px;
       font-weight: 400;
       color: #F0EAE0;
       max-width: 600px;
       line-height: 1.6;
     }
+    .btn-primary { font-size: 16px; padding: 22px 56px; font-weight: 700; }
 
-    .btn-primary {
-      font-size: 16px;
-      padding: 22px 56px;
-      font-weight: 700;
-    }
+    /* Asymmetric Component Responsive Shift */
+    .video-section { padding: 110px 44px; }
+    .video-grid { flex-direction: column; gap: 54px; text-align: center; }
+    .video-text-side { text-align: center; max-width: 100%; }
+    .video-subtitle { font-size: 20px; max-width: 640px; margin: 0 auto 40px auto; }
+    .video-player-side { justify-content: center; }
+    .video-player-wrapper { max-width: 440px; }
 
-    .video-section { padding: 100px 44px; }
-    .video-subtitle { font-size: 20px; max-width: 520px; margin-bottom: 50px; }
-
-    footer {
-      padding: 44px;
-    }
-
+    footer { padding: 44px; }
     .footer-logo { height: 60px; }
   }
 
   /* ── MOBILE (max 640px) ──────────────────────────── */
   @media (max-width: 640px) {
-    nav {
-      padding: 24px 28px;
-      align-items: center;
-    }
-    nav.scrolled {
-      padding: 16px 28px;
-    }
+    nav { padding: 24px 28px; align-items: center; }
+    nav.scrolled { padding: 16px 28px; }
+    .nav-logo { height: 150px; } 
+    .nav-contact { font-size: 16px; font-weight: 700; letter-spacing: 0.12em; }
 
-    .nav-logo { 
-      height: 150px; 
-    } 
-
-    .nav-contact {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-    }
-
-    .hero {
-      min-height: 100svh;
-      align-items: center;
-      padding-top: 220px; 
-      padding-bottom: 100px;
-    }
-
+    .hero { min-height: 100svh; align-items: center; padding-top: 220px; padding-bottom: 100px; }
     .hero-overlay {
       background: linear-gradient(
         to bottom,
@@ -331,51 +337,20 @@
         rgba(12,11,9,0.96) 100% 
       );
     }
+    .hero-content { padding: 0 28px; }
+    .hero-eyebrow { font-size: 16px; font-weight: 700; letter-spacing: 0.22em; margin-bottom: 20px; }
+    .hero-headline { font-size: clamp(46px, 12vw, 72px); line-height: 1.1; margin-bottom: 26px; }
+    .hero-sub { font-size: 21px; font-weight: 400; color: #F0EAE0; line-height: 1.6; margin-bottom: 44px; }
+    .btn-primary { padding: 22px 44px; font-size: 15px; font-weight: 700; width: 100%; text-align: center; letter-spacing: 0.18em; }
 
-    .hero-content {
-      padding: 0 28px;
-    }
-
-    .hero-eyebrow {
-      font-size: 16px; 
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      margin-bottom: 20px;
-    }
-
-    .hero-headline {
-      font-size: clamp(46px, 12vw, 72px); 
-      line-height: 1.1;
-      margin-bottom: 26px;
-    }
-
-    .hero-sub {
-      font-size: 21px; 
-      font-weight: 400; 
-      color: #F0EAE0; 
-      line-height: 1.6;
-      margin-bottom: 44px;
-    }
-
-    .btn-primary {
-      padding: 22px 44px;
-      font-size: 15px;
-      font-weight: 700; 
-      width: 100%;
-      text-align: center;
-      letter-spacing: 0.18em;
-    }
-
+    /* Video Component Mobile Fluid Configuration */
     .video-section { padding: 90px 28px; }
-    .video-title { font-size: clamp(40px, 10vw, 56px); }
-    .video-subtitle { font-size: 18px; margin-bottom: 40px; }
+    .video-title { font-size: clamp(40px, 10vw, 56px); margin-bottom: 20px; }
+    .video-subtitle { font-size: 18px; margin-bottom: 44px; }
+    .btn-pill { width: 100%; justify-content: center; padding: 20px; font-size: 15px; font-weight: 700; }
     .video-player-wrapper { max-width: 100%; }
 
-    footer {
-      padding: 44px 28px;
-      gap: 20px;
-    }
-
+    footer { padding: 44px 28px; gap: 20px; }
     .footer-logo { height: 56px; }
     .footer-copy { font-size: 14px; }
   }
@@ -384,13 +359,8 @@
   @media (max-width: 380px) {
     .nav-logo { height: 130px; }
     .nav-contact { font-size: 15px; }
-    
-    .hero-headline {
-      font-size: 42px; 
-    }
-    .hero-sub {
-      font-size: 19px;
-    }
+    .hero-headline { font-size: 42px; }
+    .hero-sub { font-size: 19px; }
 
     .video-title { font-size: 36px; }
     .video-subtitle { font-size: 16px; }
@@ -424,16 +394,35 @@
   </div>
 </div>
 
-<!-- REDEFINE QUALITY VIDEO SECTION -->
+<!-- REDEFINE QUALITY ASYMMETRIC SECTION -->
 <div class="video-section">
-  <h2 class="video-title">We redefine <em>quality.</em></h2>
-  <p class="video-subtitle">Experience meticulous attention to detail through our customized residential and corporate cleanup workflows.</p>
-  
-  <div class="video-player-wrapper">
-    <video controls playsinline preload="metadata">
-      <source src="quality-redefined.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <div class="video-grid">
+    
+    <div class="video-text-side">
+      <h2 class="video-title">We redefine <em>quality.</em></h2>
+      <p class="video-subtitle">Experience meticulous attention to detail through our customized residential and corporate cleanup workflows.</p>
+      <a href="mailto:csqualitycleaningservices@gmail.com" class="btn-pill">
+        <!-- Minimal Document/Consultation SVG Icon matching Steinway layout style -->
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        Request a Consultation
+      </a>
+    </div>
+
+    <div class="video-player-side">
+      <div class="video-player-wrapper">
+        <video controls playsinline preload="metadata">
+          <source src="quality-redefined.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
   </div>
 </div>
 

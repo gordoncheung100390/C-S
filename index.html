@@ -386,7 +386,7 @@
     fill: #0C0B09;
   }
 
-  /* ── COVERAGE & CONCIERGE SPLIT (Sourced from image_62072a.jpg) ── */
+  /* ── COVERAGE & CONCIERGE SPLIT ── */
   .coverage-section {
     background: #FFFFFF;
     color: #0C0B09;
@@ -527,8 +527,8 @@
 
   /* Custom Grayscale Map Injection Filter overrides */
   .leaflet-tile-container {
-    filter: grayscale(100%) brightness(108%) contrast(92%);
-    -webkit-filter: grayscale(100%) brightness(108%) contrast(92%);
+    filter: grayscale(100%) brightness(106%) contrast(94%);
+    -webkit-filter: grayscale(100%) brightness(106%) contrast(94%);
   }
 
   /* Custom Steinway pin layout styling */
@@ -847,13 +847,13 @@
   </div>
 </div>
 
-<!-- COVERAGE & CONCIERGE BLOCK (Sourced architectural layout from image_62072a.jpg) -->
+<!-- COVERAGE & CONCIERGE BLOCK -->
 <div class="coverage-section">
   <div class="coverage-dashboard">
-    <div class="coverage-search-mock">NR14 6RH, Norfolk</div>
+    <div class="coverage-search-mock">Coverage across Norfolk &amp; surrounding areas</div>
     
     <div class="coverage-filter-line">
-      <span>Showing coverage radius</span>
+      <span>Showing regional footprint</span>
       <span class="coverage-radius-pill">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
         30 Mile Operation Area
@@ -876,7 +876,7 @@
     <div class="coverage-meta-block">
       <div class="coverage-meta-column">
         <h4>Operational Base</h4>
-        <p>NR14 6RH<br>Norfolk, United Kingdom</p>
+        <p>Norwich Hub<br>Norfolk, United Kingdom</p>
       </div>
       <div class="coverage-meta-column">
         <h4>Availability Status</h4>
@@ -922,23 +922,22 @@
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Automatic Leaflet Geolocation Map Configuration for NR14 6RH area coordinates
+  // Safe internal initialization using base coordinates (Postcode completely removed from layout)
   try {
     const lat = 52.5768; 
     const lon = 1.3712;
     const map = L.map('map-canvas', {
       center: [lat, lon],
-      zoom: 10,
       zoomControl: false,
       attributionControl: false
     });
 
-    // Premium light architectural map tiles
+    // Premium architectural tile canvas layers
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       maxZoom: 20
     }).addTo(map);
 
-    // Custom Steinway Pin setup
+    // Minimalist custom core marker setup
     const premiumIcon = L.divIcon({
       className: 'custom-premium-marker',
       iconSize: [16, 16],
@@ -947,17 +946,21 @@
 
     L.marker([lat, lon], { icon: premiumIcon }).addTo(map);
 
-    // Precise 30-mile coverage tracking ring translation to meters
+    // High-visibility Solid 30-mile operation boundary ring
     const radiusInMeters = 30 * 1609.34; 
-    L.circle([lat, lon], {
-      color: '#C9A95A',
-      fillColor: '#C9A95A',
-      fillOpacity: 0.05,
-      weight: 1.5,
-      dashArray: '4, 6'
+    const serviceCircle = L.circle([lat, lon], {
+      color: '#B5944A',      // High contrast deep premium gold stroke
+      fillColor: '#C9A95A',  
+      fillOpacity: 0.06,     
+      weight: 2,             
+      dashArray: null        // Set to solid so it can't vanish behind map labels
     }).addTo(map);
+
+    // Automatically snaps the camera layout to center and frame the circle perfectly
+    map.fitBounds(serviceCircle.getBounds(), { padding: [30, 30] });
+    
   } catch (e) {
-    console.log("Map rendering delayed until online state detected.");
+    console.log("Map rendering delayed until network state confirmed.");
   }
 </script>
 </body>

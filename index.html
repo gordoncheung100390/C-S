@@ -8,7 +8,6 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
- 
   :root {
     --gold:       #C9A95A;
     --gold-light: #E2C97A;
@@ -176,7 +175,7 @@
   .video-section {
     background: #FFFFFF;
     color: #0C0B09;
-    padding: 140px 52px 80px 52px;
+    padding: 140px 52px 60px 52px;
   }
 
   .video-grid {
@@ -263,11 +262,136 @@
     display: block;
   }
 
+  /* ── PORTFOLIO BLOCK (Sourced from image_563543.jpg) ── */
+  .portfolio-section {
+    background: #FFFFFF;
+    color: #0C0B09;
+    padding: 80px 52px;
+  }
+
+  .portfolio-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .portfolio-header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 4.5vw, 64px);
+    line-height: 1.12;
+    color: #0C0B09;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .portfolio-header-sub {
+    font-size: 16px;
+    color: #666666;
+    max-width: 650px;
+    margin-bottom: 52px;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* Five Column Grid Frame aligning dynamically */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+
+  .portfolio-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 12px; /* Matches subtle geometry framework */
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Individual card placeholders */
+  .card-hmo      { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('hmo.png'); }
+  .card-schools  { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('schools.png'); }
+  .card-offices  { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('offices.png'); }
+  .card-communal { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('communal.png'); }
+  .card-clinics  { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('clinics.png'); }
+
+  .portfolio-card-title {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+
+  /* Translucent frosted container from image_563543.jpg */
+  .portfolio-frosted-panel {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 110px;
+  }
+
+  .portfolio-card-desc {
+    font-size: 11px;
+    line-height: 1.5;
+    color: #FFFFFF;
+    font-weight: 400;
+    opacity: 0.95;
+  }
+
+  .portfolio-card-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+
+  .portfolio-card-arrow {
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .portfolio-card-action:hover .portfolio-card-arrow {
+    transform: translateX(2px);
+  }
+
+  .portfolio-card-arrow svg {
+    width: 8px;
+    height: 8px;
+    fill: #0C0B09;
+  }
+
   /* ── OWNER / LEADERSHIP SECTION ─────────────────── */
   .owner-section {
     background: #FFFFFF;
     color: #0C0B09;
-    padding: 80px 52px 160px 52px;
+    padding: 60px 52px 160px 52px;
   }
 
   .owner-container {
@@ -315,7 +439,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%); /* Option 1: Forces the raw color image asset into beautiful grayscale */
+    filter: grayscale(100%);
     transition: filter 0.4s ease;
   }
 
@@ -382,14 +506,24 @@
     }
     .btn-primary { font-size: 16px; padding: 22px 56px; font-weight: 700; }
 
-    .video-section { padding: 110px 44px 60px 44px; }
+    .video-section { padding: 110px 44px 40px 44px; }
     .video-grid { flex-direction: column; gap: 54px; text-align: center; }
     .video-text-side { text-align: center; max-width: 100%; }
     .video-subtitle { font-size: 20px; max-width: 640px; margin: 0 auto 40px auto; }
     .video-player-side { justify-content: center; }
     .video-player-wrapper { max-width: 440px; }
 
-    .owner-section { padding: 60px 44px 120px 44px; }
+    /* Portfolio Structural Reflow to balanced layout grid */
+    .portfolio-section { padding: 60px 44px; }
+    .portfolio-header-sub { font-size: 20px; max-width: 100%; margin-bottom: 44px; }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .portfolio-card { aspect-ratio: 1 / 1; }
+    .portfolio-card-title { font-size: 22px; }
+    .portfolio-frosted-panel { min-height: 125px; padding: 20px; bottom: 20px; left: 20px; right: 20px; }
+    .portfolio-card-desc { font-size: 14px; }
+    .portfolio-card-action { font-size: 14px; }
+
+    .owner-section { padding: 40px 44px 120px 44px; }
     .owner-section-subtitle { font-size: 20px; max-width: 100%; margin-bottom: 50px; }
     .owner-card { max-width: 440px; margin: 0 auto; text-align: center; }
     .owner-name { font-size: 24px; margin-bottom: 6px; }
@@ -421,13 +555,19 @@
     .hero-sub { font-size: 21px; font-weight: 400; color: #F0EAE0; line-height: 1.6; margin-bottom: 44px; }
     .btn-primary { padding: 22px 44px; font-size: 15px; font-weight: 700; width: 100%; text-align: center; letter-spacing: 0.18em; }
 
-    .video-section { padding: 90px 28px 45px 28px; }
+    .video-section { padding: 90px 28px 40px 28px; }
     .video-title { font-size: clamp(40px, 10vw, 56px); margin-bottom: 20px; }
     .video-subtitle { font-size: 18px; margin-bottom: 44px; }
     .btn-pill { width: 100%; justify-content: center; padding: 20px; font-size: 15px; font-weight: 700; }
     .video-player-wrapper { max-width: 100%; }
 
-    .owner-section { padding: 45px 28px 100px 28px; }
+    .portfolio-section { padding: 40px 28px; }
+    .portfolio-header-title { font-size: clamp(40px, 10vw, 56px); }
+    .portfolio-header-sub { font-size: 18px; margin-bottom: 40px; }
+    .portfolio-grid { grid-template-columns: 1fr; gap: 28px; }
+    .portfolio-card { aspect-ratio: 4 / 5; }
+
+    .owner-section { padding: 40px 28px 100px 28px; }
     .owner-section-title { font-size: clamp(40px, 10vw, 56px); }
     .owner-section-subtitle { font-size: 18px; margin-bottom: 44px; }
     .owner-card { max-width: 100%; }
@@ -446,6 +586,9 @@
 
     .video-title { font-size: 36px; }
     .video-subtitle { font-size: 16px; }
+
+    .portfolio-header-title { font-size: 36px; }
+    .portfolio-header-sub { font-size: 16px; }
     
     .owner-section-title { font-size: 36px; }
     .owner-section-subtitle { font-size: 16px; }
@@ -507,6 +650,78 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- OUR PORTFOLIO GRID SECTION (Steinway Layout Framework) -->
+<div class="portfolio-section">
+  <div class="portfolio-container">
+    <h2 class="portfolio-header-title">Our Portfolio</h2>
+    <p class="portfolio-header-sub">Fascinating technology combined with exceptional environmental engineering across a diverse architectural spectrum.</p>
+    
+    <div class="portfolio-grid">
+      
+      <!-- HMOs Card -->
+      <div class="portfolio-card card-hmo">
+        <span class="portfolio-card-title">HMOs</span>
+        <div class="portfolio-frosted-panel">
+          <p class="portfolio-card-desc">Bespoke turnover management and continuous care for high-occupancy environments.</p>
+          <a href="mailto:csqualitycleaningservices@gmail.com" class="portfolio-card-action">
+            <span>Explore Options</span>
+            <div class="portfolio-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#0C0B09" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Schools Card -->
+      <div class="portfolio-card card-schools">
+        <span class="portfolio-card-title">Schools</span>
+        <div class="portfolio-frosted-panel">
+          <p class="portfolio-card-desc">Clinical protection protocols ensuring highly sanitized and focused academic spaces.</p>
+          <a href="mailto:csqualitycleaningservices@gmail.com" class="portfolio-card-action">
+            <span>Explore Options</span>
+            <div class="portfolio-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#0C0B09" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Offices Card -->
+      <div class="portfolio-card card-offices">
+        <span class="portfolio-card-title">Offices</span>
+        <div class="portfolio-frosted-panel">
+          <p class="portfolio-card-desc">Sophisticated corporate environmental curation matching institutional prestige.</p>
+          <a href="mailto:csqualitycleaningservices@gmail.com" class="portfolio-card-action">
+            <span>Explore Options</span>
+            <div class="portfolio-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#0C0B09" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Communal Areas Card -->
+      <div class="portfolio-card card-communal">
+        <span class="portfolio-card-title">Communal areas</span>
+        <div class="portfolio-frosted-panel">
+          <p class="portfolio-card-desc">Flawlessly presented public spaces, greeting reception hubs, and shared facilities.</p>
+          <a href="mailto:csqualitycleaningservices@gmail.com" class="portfolio-card-action">
+            <span>Explore Options</span>
+            <div class="portfolio-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#0C0B09" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Clinics Card -->
+      <div class="portfolio-card card-clinics">
+        <span class="portfolio-card-title">Clinics</span>
+        <div class="portfolio-frosted-panel">
+          <p class="portfolio-card-desc">Sterile deep-cleaning sequences tailored for health regulation compliance and patient safety.</p>
+          <a href="mailto:csqualitycleaningservices@gmail.com" class="portfolio-card-action">
+            <span>Explore Options</span>
+            <div class="portfolio-card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#0C0B09" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 

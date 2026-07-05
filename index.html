@@ -8,7 +8,6 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
- 
   :root {
     --gold:       #C9A95A;
     --gold-light: #E2C97A;
@@ -196,12 +195,131 @@
     opacity: 0.6;
   }
 
-  /* ── RESPONSIVE ──────────────────────────────────── */
-  @media (max-width: 768px) {
-    nav { padding: 18px 24px; }
-    nav.scrolled { padding: 14px 24px; }
-    .hero-content { padding: 0 24px; }
-    footer { padding: 32px 24px; }
+  /* ── TABLET (max 1024px) ─────────────────────────── */
+  @media (max-width: 1024px) {
+    nav { padding: 20px 36px; }
+    nav.scrolled { padding: 14px 36px; }
+
+    .nav-logo { height: 80px; }
+
+    .hero {
+      padding-bottom: 80px;
+    }
+
+    .hero-content {
+      padding: 0 36px;
+      max-width: 640px;
+    }
+
+    .hero-headline {
+      font-size: clamp(38px, 5.5vw, 64px);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      max-width: 400px;
+    }
+
+    footer {
+      padding: 36px;
+    }
+
+    .footer-logo { height: 44px; }
+  }
+
+  /* ── MOBILE (max 640px) ──────────────────────────── */
+  @media (max-width: 640px) {
+    nav {
+      padding: 16px 20px;
+      /* stack logo above contact link on very small screens */
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    nav.scrolled {
+      padding: 12px 20px;
+      gap: 8px;
+    }
+
+    .nav-logo { height: 64px; }
+
+    .nav-contact {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+
+    .hero {
+      /* push content down so logo doesn't overlap on small screens */
+      min-height: 100svh;
+      padding-bottom: 60px;
+      padding-top: 160px;        /* room for stacked nav */
+      align-items: flex-end;
+    }
+
+    /* slightly stronger overlay on mobile for readability */
+    .hero-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(12,11,9,0.55) 0%,
+        rgba(12,11,9,0.60) 35%,
+        rgba(12,11,9,0.92) 100%
+      );
+    }
+
+    .hero-content {
+      padding: 0 20px;
+      max-width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      margin-bottom: 14px;
+    }
+
+    .hero-headline {
+      font-size: clamp(34px, 10vw, 52px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 100%;
+      margin-bottom: 32px;
+    }
+
+    .btn-primary {
+      padding: 15px 32px;
+      font-size: 11px;
+      width: 100%;
+      text-align: center;
+    }
+
+    footer {
+      padding: 28px 20px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .footer-logo { height: 40px; }
+
+    .footer-copy {
+      font-size: 10px;
+    }
+  }
+
+  /* ── VERY SMALL (max 380px) ──────────────────────── */
+  @media (max-width: 380px) {
+    .hero-headline {
+      font-size: 30px;
+    }
+    .hero-sub {
+      font-size: 13px;
+    }
   }
 </style>
 </head>
@@ -210,7 +328,7 @@
 <!-- NAV -->
 <nav id="nav">
   <img src="logo.png" alt="C&S Quality Cleaning Services" class="nav-logo">
-  <a href="mailto:hello@candscleaning.co.uk" class="nav-contact">Contact Us</a>
+  <a href="mailto:csqualitycleaningservices@gmail.com" class="nav-contact">Contact Us</a>
 </nav>
 
 <!-- HERO -->
@@ -227,7 +345,7 @@
       Premium residential and commercial cleaning for clients who expect — and deserve — the very finest. Serving Norfolk.
     </p>
     <div class="hero-cta">
-      <a href="mailto:hello@candscleaning.co.uk" class="btn-primary">Request a Consultation</a>
+      <a href="mailto:csqualitycleaningservices@gmail.com" class="btn-primary">Request a Consultation</a>
     </div>
   </div>
 </div>

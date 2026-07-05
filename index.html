@@ -518,11 +518,18 @@
     background: #F0EDE9;
     position: relative;
     z-index: 1;
+    min-height: 600px; /* Forces height for the flex child */
   }
 
   #map-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
+    z-index: 2;
   }
 
   /* Custom Grayscale Map Injection Filter overrides */
@@ -958,6 +965,9 @@
 
     // Automatically snaps the camera layout to center and frame the circle perfectly
     map.fitBounds(serviceCircle.getBounds(), { padding: [30, 30] });
+    
+    // Force the map to recognize its container size
+    setTimeout(function(){ map.invalidateSize(); }, 500);
     
   } catch (e) {
     console.log("Map rendering delayed until network state confirmed.");

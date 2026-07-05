@@ -95,8 +95,6 @@
     );
   }
 
-
-
   @keyframes heroZoom {
     from { transform: scale(1.04); }
     to   { transform: scale(1.0); }
@@ -203,7 +201,9 @@
     .nav-logo { height: 80px; }
 
     .hero {
-      padding-bottom: 80px;
+      align-items: center;       /* Lifted content up to center instead of bottom */
+      padding-top: 140px;        /* Prevents content bumping into fixed navbar */
+      padding-bottom: 60px;
     }
 
     .hero-content {
@@ -231,7 +231,6 @@
   @media (max-width: 640px) {
     nav {
       padding: 16px 20px;
-      /* stack logo above contact link on very small screens */
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
@@ -249,20 +248,18 @@
     }
 
     .hero {
-      /* push content down so logo doesn't overlap on small screens */
       min-height: 100svh;
+      align-items: center;       /* Centers the typography beautifully on mobile viewports */
+      padding-top: 180px;        /* Gives safe room for the stacked mobile header */
       padding-bottom: 60px;
-      padding-top: 160px;        /* room for stacked nav */
-      align-items: flex-end;
     }
 
-    /* slightly stronger overlay on mobile for readability */
     .hero-overlay {
       background: linear-gradient(
         to bottom,
-        rgba(12,11,9,0.55) 0%,
-        rgba(12,11,9,0.60) 35%,
-        rgba(12,11,9,0.92) 100%
+        rgba(12,11,9,0.65) 0%,   /* Darkened top slightly to keep white text legible over image */
+        rgba(12,11,9,0.70) 45%,
+        rgba(12,11,9,0.92) 100-px
       );
     }
 

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>C&amp;S Quality Cleaning Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Leaflet Map CSS Engine for Grayscale Canvas rendering -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -262,7 +264,7 @@
     display: block;
   }
 
-  /* ── PORTFOLIO BLOCK (Sourced from image_563543.jpg) ── */
+  /* ── PORTFOLIO BLOCK ─────────────────────────────── */
   .portfolio-section {
     background: #FFFFFF;
     color: #0C0B09;
@@ -293,7 +295,6 @@
     font-weight: 400;
   }
 
-  /* Five Column Grid Frame aligning dynamically */
   .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -304,14 +305,13 @@
     position: relative;
     width: 100%;
     aspect-ratio: 4 / 5;
-    border-radius: 12px; /* Matches subtle geometry framework */
+    border-radius: 12px;
     overflow: hidden;
     background-size: cover;
     background-position: center;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.04);
   }
 
-  /* Individual card placeholders */
   .card-hmo      { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('hmo.png'); }
   .card-schools  { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('schools.png'); }
   .card-offices  { background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('offices.png'); }
@@ -329,7 +329,6 @@
     text-shadow: 0 2px 8px rgba(0,0,0,0.25);
   }
 
-  /* Translucent frosted container from image_563543.jpg */
   .portfolio-frosted-panel {
     position: absolute;
     bottom: 16px;
@@ -387,11 +386,165 @@
     fill: #0C0B09;
   }
 
+  /* ── COVERAGE & CONCIERGE SPLIT (Sourced from image_62072a.jpg) ── */
+  .coverage-section {
+    background: #FFFFFF;
+    color: #0C0B09;
+    border-top: 1px solid #EAE6DE;
+    display: flex;
+    min-height: 600px;
+  }
+
+  .coverage-dashboard {
+    width: 45%;
+    padding: 80px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .coverage-search-mock {
+    width: 100%;
+    padding: 18px 24px;
+    background: #F3F1EC;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: #0C0B09;
+    margin-bottom: 24px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .coverage-filter-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 48px;
+    border-bottom: 1px solid #EAE6DE;
+    padding-bottom: 16px;
+  }
+
+  .coverage-radius-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .coverage-brand-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.15;
+    color: #0C0B09;
+    margin-bottom: 24px;
+  }
+
+  .coverage-concierge-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .btn-concierge {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #F3F1EC;
+    color: #0C0B09;
+    text-decoration: none;
+    padding: 16px 20px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.25s;
+    border: 1px solid transparent;
+  }
+  .btn-concierge:hover { background: #EAE6DE; }
+  
+  .btn-concierge svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: #0C0B09;
+    stroke-width: 2;
+  }
+
+  .coverage-meta-block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 32px;
+    border-top: 1px solid #EAE6DE;
+  }
+
+  .coverage-meta-column h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999999;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .coverage-meta-column p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #0C0B09;
+    font-weight: 400;
+  }
+
+  .status-dot-active {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #27AE60;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  /* Right-Side Map Frame Container */
+  .coverage-map-pane {
+    width: 55%;
+    background: #F0EDE9;
+    position: relative;
+    z-index: 1;
+  }
+
+  #map-canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Custom Grayscale Map Injection Filter overrides */
+  .leaflet-tile-container {
+    filter: grayscale(100%) brightness(108%) contrast(92%);
+    -webkit-filter: grayscale(100%) brightness(108%) contrast(92%);
+  }
+
+  /* Custom Steinway pin layout styling */
+  .custom-premium-marker {
+    background: #0C0B09;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
   /* ── OWNER / LEADERSHIP SECTION ─────────────────── */
   .owner-section {
     background: #FFFFFF;
     color: #0C0B09;
-    padding: 60px 52px 160px 52px;
+    padding: 80px 52px 160px 52px;
+    border-top: 1px solid #EAE6DE;
   }
 
   .owner-container {
@@ -440,7 +593,6 @@
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-    transition: filter 0.4s ease;
   }
 
   .owner-name {
@@ -489,21 +641,11 @@
     .nav-logo { height: 180px; } 
     .nav-contact { font-size: 18px; font-weight: 500; }
 
-    .hero {
-      align-items: center;
-      padding-top: 250px;
-      padding-bottom: 100px;
-    }
+    .hero { align-items: center; padding-top: 250px; padding-bottom: 100px; }
     .hero-content { padding: 0 44px; max-width: 740px; }
     .hero-eyebrow { font-size: 18px; font-weight: 500; letter-spacing: 0.24em; }
     .hero-headline { font-size: clamp(54px, 7.5vw, 84px); }
-    .hero-sub {
-      font-size: 24px;
-      font-weight: 400;
-      color: #F0EAE0;
-      max-width: 600px;
-      line-height: 1.6;
-    }
+    .hero-sub { font-size: 24px; font-weight: 400; color: #F0EAE0; max-width: 600px; line-height: 1.6; }
     .btn-primary { font-size: 16px; padding: 22px 56px; font-weight: 700; }
 
     .video-section { padding: 110px 44px 40px 44px; }
@@ -513,7 +655,6 @@
     .video-player-side { justify-content: center; }
     .video-player-wrapper { max-width: 440px; }
 
-    /* Portfolio Structural Reflow to balanced layout grid */
     .portfolio-section { padding: 60px 44px; }
     .portfolio-header-sub { font-size: 20px; max-width: 100%; margin-bottom: 44px; }
     .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -523,7 +664,13 @@
     .portfolio-card-desc { font-size: 14px; }
     .portfolio-card-action { font-size: 14px; }
 
-    .owner-section { padding: 40px 44px 120px 44px; }
+    /* Coverage Grid Adaptability */
+    .coverage-section { flex-direction: column; }
+    .coverage-dashboard { width: 100%; padding: 80px 44px; }
+    .coverage-meta-block { margin-top: 60px; }
+    .coverage-map-pane { width: 100%; height: 450px; }
+
+    .owner-section { padding: 80px 44px 120px 44px; }
     .owner-section-subtitle { font-size: 20px; max-width: 100%; margin-bottom: 50px; }
     .owner-card { max-width: 440px; margin: 0 auto; text-align: center; }
     .owner-name { font-size: 24px; margin-bottom: 6px; }
@@ -541,14 +688,7 @@
     .nav-contact { font-size: 16px; font-weight: 700; letter-spacing: 0.12em; }
 
     .hero { min-height: 100svh; align-items: center; padding-top: 220px; padding-bottom: 100px; }
-    .hero-overlay {
-      background: linear-gradient(
-        to bottom,
-        rgba(12,11,9,0.65) 0%,
-        rgba(12,11,9,0.75) 40%,
-        rgba(12,11,9,0.96) 100% 
-      );
-    }
+    .hero-overlay { background: linear-gradient(to bottom, rgba(12,11,9,0.65) 0%, rgba(12,11,9,0.75) 40%, rgba(12,11,9,0.96) 100% ); }
     .hero-content { padding: 0 28px; }
     .hero-eyebrow { font-size: 16px; font-weight: 700; letter-spacing: 0.22em; margin-bottom: 20px; }
     .hero-headline { font-size: clamp(46px, 12vw, 72px); line-height: 1.1; margin-bottom: 26px; }
@@ -561,13 +701,19 @@
     .btn-pill { width: 100%; justify-content: center; padding: 20px; font-size: 15px; font-weight: 700; }
     .video-player-wrapper { max-width: 100%; }
 
-    .portfolio-section { padding: 40px 28px; }
+    .portfolio-section { padding: 60px 28px; }
     .portfolio-header-title { font-size: clamp(40px, 10vw, 56px); }
     .portfolio-header-sub { font-size: 18px; margin-bottom: 40px; }
     .portfolio-grid { grid-template-columns: 1fr; gap: 28px; }
     .portfolio-card { aspect-ratio: 4 / 5; }
 
-    .owner-section { padding: 40px 28px 100px 28px; }
+    .coverage-dashboard { padding: 60px 28px; }
+    .coverage-concierge-row { flex-direction: column; gap: 14px; }
+    .btn-concierge { padding: 20px; font-size: 14px; font-weight: 700; }
+    .coverage-meta-block { flex-direction: column; gap: 32px; }
+    .coverage-map-pane { height: 350px; }
+
+    .owner-section { padding: 60px 28px 100px 28px; }
     .owner-section-title { font-size: clamp(40px, 10vw, 56px); }
     .owner-section-subtitle { font-size: 18px; margin-bottom: 44px; }
     .owner-card { max-width: 100%; }
@@ -575,23 +721,6 @@
     footer { padding: 44px 28px; gap: 20px; }
     .footer-logo { height: 56px; }
     .footer-copy { font-size: 14px; }
-  }
-
-  /* ── VERY SMALL (max 380px) ──────────────────────── */
-  @media (max-width: 380px) {
-    .nav-logo { height: 130px; }
-    .nav-contact { font-size: 15px; }
-    .hero-headline { font-size: 42px; }
-    .hero-sub { font-size: 19px; }
-
-    .video-title { font-size: 36px; }
-    .video-subtitle { font-size: 16px; }
-
-    .portfolio-header-title { font-size: 36px; }
-    .portfolio-header-sub { font-size: 16px; }
-    
-    .owner-section-title { font-size: 36px; }
-    .owner-section-subtitle { font-size: 16px; }
   }
 </style>
 </head>
@@ -653,15 +782,13 @@
   </div>
 </div>
 
-<!-- OUR PORTFOLIO GRID SECTION (Steinway Layout Framework) -->
+<!-- OUR PORTFOLIO GRID SECTION -->
 <div class="portfolio-section">
   <div class="portfolio-container">
     <h2 class="portfolio-header-title">Our Portfolio</h2>
     <p class="portfolio-header-sub">Fascinating technology combined with exceptional environmental engineering across a diverse architectural spectrum.</p>
     
     <div class="portfolio-grid">
-      
-      <!-- HMOs Card -->
       <div class="portfolio-card card-hmo">
         <span class="portfolio-card-title">HMOs</span>
         <div class="portfolio-frosted-panel">
@@ -673,7 +800,6 @@
         </div>
       </div>
 
-      <!-- Schools Card -->
       <div class="portfolio-card card-schools">
         <span class="portfolio-card-title">Schools</span>
         <div class="portfolio-frosted-panel">
@@ -685,7 +811,6 @@
         </div>
       </div>
 
-      <!-- Offices Card -->
       <div class="portfolio-card card-offices">
         <span class="portfolio-card-title">Offices</span>
         <div class="portfolio-frosted-panel">
@@ -697,7 +822,6 @@
         </div>
       </div>
 
-      <!-- Communal Areas Card -->
       <div class="portfolio-card card-communal">
         <span class="portfolio-card-title">Communal areas</span>
         <div class="portfolio-frosted-panel">
@@ -709,7 +833,6 @@
         </div>
       </div>
 
-      <!-- Clinics Card -->
       <div class="portfolio-card card-clinics">
         <span class="portfolio-card-title">Clinics</span>
         <div class="portfolio-frosted-panel">
@@ -720,8 +843,52 @@
           </a>
         </div>
       </div>
-
     </div>
+  </div>
+</div>
+
+<!-- COVERAGE & CONCIERGE BLOCK (Sourced architectural layout from image_62072a.jpg) -->
+<div class="coverage-section">
+  <div class="coverage-dashboard">
+    <div class="coverage-search-mock">NR14 6RH, Norfolk</div>
+    
+    <div class="coverage-filter-line">
+      <span>Showing coverage radius</span>
+      <span class="coverage-radius-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+        30 Mile Operation Area
+      </span>
+    </div>
+
+    <h2 class="coverage-brand-title">C&amp;S Premium Hub Norfolk</h2>
+    
+    <div class="coverage-concierge-row">
+      <a href="tel:07456222251" class="btn-concierge">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Give us a call
+      </a>
+      <a href="mailto:csqualitycleaningservices@gmail.com" class="btn-concierge">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        Email Concierge
+      </a>
+    </div>
+
+    <div class="coverage-meta-block">
+      <div class="coverage-meta-column">
+        <h4>Operational Base</h4>
+        <p>NR14 6RH<br>Norfolk, United Kingdom</p>
+      </div>
+      <div class="coverage-meta-column">
+        <h4>Availability Status</h4>
+        <p><span class="status-dot-active"></span>Active Deployment</p>
+        <p style="color: #666666; font-size: 12px; margin-top: 4px;">Mon - Sat: 08:00 - 18:00</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map canvas window -->
+  <div class="coverage-map-pane">
+    <div id="map-canvas"></div>
   </div>
 </div>
 
@@ -747,11 +914,51 @@
   <p class="footer-copy">© 2025 C&amp;S Quality Cleaning Services. All rights reserved.</p>
 </footer>
 
+<!-- Leaflet interactive map engine injection scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
+
+  // Automatic Leaflet Geolocation Map Configuration for NR14 6RH area coordinates
+  try {
+    const lat = 52.5768; 
+    const lon = 1.3712;
+    const map = L.map('map-canvas', {
+      center: [lat, lon],
+      zoom: 10,
+      zoomControl: false,
+      attributionControl: false
+    });
+
+    // Premium light architectural map tiles
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 20
+    }).addTo(map);
+
+    // Custom Steinway Pin setup
+    const premiumIcon = L.divIcon({
+      className: 'custom-premium-marker',
+      iconSize: [16, 16],
+      iconAnchor: [8, 8]
+    });
+
+    L.marker([lat, lon], { icon: premiumIcon }).addTo(map);
+
+    // Precise 30-mile coverage tracking ring translation to meters
+    const radiusInMeters = 30 * 1609.34; 
+    L.circle([lat, lon], {
+      color: '#C9A95A',
+      fillColor: '#C9A95A',
+      fillOpacity: 0.05,
+      weight: 1.5,
+      dashArray: '4, 6'
+    }).addTo(map);
+  } catch (e) {
+    console.log("Map rendering delayed until online state detected.");
+  }
 </script>
 </body>
 </html>

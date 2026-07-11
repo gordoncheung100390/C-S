@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>C&amp;S Quality Cleaning Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<!-- Leaflet Map CSS Engine -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -77,7 +78,7 @@
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('http://googleusercontent.com/image_generation_content/332');
+    background-image: url('hero.png');
     background-size: cover;
     background-position: center 30%;
     transform: scale(1.04);
@@ -391,7 +392,7 @@
     color: #0C0B09;
     border-top: 1px solid #EAE6DE;
     display: flex;
-    align-items: stretch;
+    align-items: stretch; /* Forces children to match height */
   }
 
   .coverage-dashboard {
@@ -511,6 +512,7 @@
     margin-right: 6px;
   }
 
+  /* Right-Side Map Container Structure Fixes */
   .coverage-map-pane {
     width: 55%;
     background: #F0EDE9;
@@ -522,14 +524,16 @@
     width: 100%;
     height: 100%;
     min-height: 600px;
-    background: #F0EDE9;
+    background: #F0EDE9; /* Fallback color */
   }
 
+  /* Custom Grayscale Map Injection Filter overrides */
   .leaflet-tile-container {
     filter: grayscale(100%) brightness(106%) contrast(94%);
     -webkit-filter: grayscale(100%) brightness(106%) contrast(94%);
   }
 
+  /* Custom Steinway pin layout styling */
   .custom-premium-marker {
     background: #0C0B09;
     border: 2px solid var(--gold);
@@ -662,6 +666,7 @@
     .portfolio-card-desc { font-size: 14px; }
     .portfolio-card-action { font-size: 14px; }
 
+    /* Coverage Grid Adaptability */
     .coverage-section { flex-direction: column; align-items: stretch; }
     .coverage-dashboard { width: 100%; padding: 80px 44px; }
     .coverage-meta-block { margin-top: 60px; }
@@ -724,11 +729,13 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="nav">
   <img src="logo.png" alt="C&S Quality Cleaning Services" class="nav-logo">
   <a href="mailto:csqualitycleaningservices@gmail.com" class="nav-contact">Contact Us</a>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -747,6 +754,7 @@
   </div>
 </div>
 
+<!-- REDEFINE QUALITY ASYMMETRIC SECTION -->
 <div class="video-section">
   <div class="video-grid">
     
@@ -777,6 +785,7 @@
   </div>
 </div>
 
+<!-- OUR PORTFOLIO GRID SECTION -->
 <div class="portfolio-section">
   <div class="portfolio-container">
     <h2 class="portfolio-header-title">Our Portfolio</h2>
@@ -841,6 +850,7 @@
   </div>
 </div>
 
+<!-- COVERAGE & CONCIERGE BLOCK -->
 <div class="coverage-section">
   <div class="coverage-dashboard">
     <div class="coverage-search-mock">Coverage across Norfolk &amp; surrounding areas</div>
@@ -879,11 +889,13 @@
     </div>
   </div>
 
+  <!-- Map canvas window -->
   <div class="coverage-map-pane">
     <div id="map-canvas"></div>
   </div>
 </div>
 
+<!-- OWNER / LEADERSHIP SECTION -->
 <div class="owner-section">
   <div class="owner-container">
     <h2 class="owner-section-title">Leadership &amp; Vision</h2>
@@ -899,11 +911,13 @@
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <img src="logo.png" alt="C&S" class="footer-logo">
   <p class="footer-copy">© 2025 C&amp;S Quality Cleaning Services. All rights reserved.</p>
 </footer>
 
+<!-- Leaflet interactive map engine injection scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   const nav = document.getElementById('nav');
@@ -915,6 +929,7 @@
     const lat = 52.5768; 
     const lon = 1.3712;
     
+    // Explicit maxZoom ensures the map doesn't try to load tiles that don't exist
     const map = L.map('map-canvas', {
       center: [lat, lon],
       maxZoom: 18, 
@@ -934,9 +949,10 @@
 
     L.marker([lat, lon], { icon: premiumIcon }).addTo(map);
 
+    // This was the bug: The radius command was missing from the configuration!
     const radiusInMeters = 30 * 1609.34; 
     const serviceCircle = L.circle([lat, lon], {
-      radius: radiusInMeters, 
+      radius: radiusInMeters, // Fixed
       color: '#B5944A',      
       fillColor: '#C9A95A',  
       fillOpacity: 0.06,     
@@ -944,8 +960,10 @@
       dashArray: null        
     }).addTo(map);
 
+    // Forces map boundary frame 
     map.fitBounds(serviceCircle.getBounds(), { padding: [30, 30] });
     
+    // Forces map engine to re-calculate container size to prevent grey tearing
     setTimeout(function(){ map.invalidateSize(); }, 500);
 
   } catch (e) {

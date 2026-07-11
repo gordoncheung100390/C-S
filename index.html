@@ -965,9 +965,13 @@
     
     // Forces map engine to re-calculate container size to prevent grey tearing
     setTimeout(function(){ map.invalidateSize(); }, 500);
+    window.addEventListener('load', function(){ map.invalidateSize(); });
+    window.addEventListener('resize', function(){ map.invalidateSize(); });
 
   } catch (e) {
-    console.log("Map rendering error: ", e);
+    console.error("Map rendering error: ", e);
+    document.getElementById('map-canvas').innerHTML =
+      '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#999;font-size:13px;">Map failed to load — check console for details.</div>';
   }
 </script>
 </body>
